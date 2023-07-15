@@ -1,0 +1,66 @@
+DATA:
+  data_path: ./data
+  dataset: EgoPAT3D
+  transform:
+    input_size: [64, 64]
+    means: [0.5, 0.5, 0.5]
+    stds: [0.5, 0.5, 0.5]
+  max_frames: 40
+  load_all: True
+MODEL:
+  arch: TransformerSSM
+  backbone: vit/b16-224
+  freeze_backbone: True
+  vpt: # visual prompt tuning
+    prompt_len: 10  # the tunable param
+    prompt_dim: 768
+    dropout: 0.0
+  ssm:
+    h_dim: 128
+    z_dim: 16
+    pred_link: True
+  feat_dim: 256
+  loc_dim: 256
+  modalities: ['rgb', 'loc']  # input modalities
+  target: 3d  # 2D or 3D target
+  sup_obs: True  # supervise observed frames
+  centralize: True
+  use_odom: True
+  aleatoric_uncertainty:
+    type: hybrid
+    act_out: softplus
+  pred_velocity: True
+TRAIN:
+  batch_size: 64
+  num_ratios: 1
+  ratios: [0.6]
+  loss:
+    type: CoordLoss
+    function: Huber
+    delta: 0.00001
+    scale: 1000
+    robust_weighing: True
+    tau: 0.1
+    velo_coeff: 10.0
+    velo_warp: 1.0
+  base_lr: 0.0001
+  optimizer: Adam
+  weight_decay: 0
+  scheduler:
+    type: cosine_warmup
+    warmup_epoch: 10
+    lr_decay: 0.5
+    lr_decay_epoch: []
+    num_restarts: 0
+    min_lr_factor: 0.001
+  epoch: 500
+  eval_interval: 20
+  snapshot_interval: 20
+  snapshot_prefix: usst_vit_final_
+TEST:
+  batch_size: 64
+  ratios: [0.6]
+  test_epoch: null  # the last epoch
+  # eval_space: norm2d  # [2d, norm2d, 3d]
+seed: 0
+output_dir: ./output
