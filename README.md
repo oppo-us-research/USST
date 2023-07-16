@@ -65,7 +65,7 @@ predicting trajectory in global 3D space is practically more valuable to underst
 ```
 
 ### H2O-PT
-- This dataset can be downloaded here: [OneDrive]https://1drv.ms/f/s!Akf7nSDT8d4KqjIdL2EOACQ182Ua), which is collected by re-annotating the [H2O Dataset](https://taeinkwon.com/projects/h2o/). 
+- This dataset can be downloaded here: [OneDrive](https://1drv.ms/f/s!Akf7nSDT8d4KqjIdL2EOACQ182Ua), which is collected by re-annotating the [H2O Dataset](https://taeinkwon.com/projects/h2o/). 
 
 - After downloaded, place the downloaded `tar.gz` file under `data/H2O/` and extract it: `tar zxvf Ego3DTraj.tar.gz`. The dataset folder should be structured as follows.
 ```shell
