@@ -6,6 +6,8 @@ import numpy as np
 import cv2
 import pickle
 import torch
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.video_transforms.video_transforms import Compose, Resize, Normalize
 from src.video_transforms.volume_transforms import ClipToTensor
 from src.utils import set_deterministic, output_transform, read_video

@@ -137,7 +137,7 @@ if __name__ == '__main__':
     # data = {'scene': '1', 'record': 'bathroomCabinet_3', 'clip': 'c53_s2632_e2662_sx603_sy389_ex558_ey301'}
     
     folder = 'scene{}_record{}_{}'.format(data['scene'], data['record'].split('_')[-1], data['clip'].split('_')[0])
-    result_dir = 'output/demo_task3/{}'.format(folder)
+    result_dir = 'output/demo_task/{}'.format(folder)
     os.makedirs(result_dir, exist_ok=True)
 
     intrinsics = {'fx': 1.80820276e+03, 'fy': 1.80794556e+03, 

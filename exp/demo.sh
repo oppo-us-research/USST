@@ -3,7 +3,8 @@
 pwd_dir=$pwd
 cd ../
 
-source activate usst
+eval "$(conda shell.bash hook)"
+conda activate usst
 
 GPU_ID=$1
 TAG=$2
