@@ -54,21 +54,25 @@ predicting trajectory in global 3D space is practically more valuable to underst
 ## Datasets
 
 ### EgoPAT3D-DT
-This dataset can be downloaded here: [Google Drive](), which is collected by re-annotating the raw RGB-D recordings from [EgoPAT3D Dataset](https://github.com/ai4ce/EgoPAT3D). After downloaded, the dataset folder should be structured as follows.
+- This dataset can be downloaded here: [OneDrive](https://1drv.ms/f/s!Akf7nSDT8d4KqjEeQT4HGlx038by), which is collected by re-annotating the raw RGB-D recordings from [EgoPAT3D Dataset](https://github.com/ai4ce/EgoPAT3D). 
+
+- After downloaded, place the downloaded `tar.gz` file under `data/EgoPAT3D/` and extract it: `tar zxvf EgoPAT3D-postproc.tar.gz`. The dataset folder should be structured as follows.
 ```shell
-data/EgoPAT3D/EgoPAT3D-postproc
---|odometry  # visual odometry data, e.g., "1/bathroomCabinet_1/c1_s47_e78_sx636_sy394_ex628_ey437.npy"
---|trajectory_repair  # trajectory data, e.g., "1/bathroomCabinet_1/c1_s47_e78_sx636_sy394_ex628_ey437.pkl"
---|video_clips_hand  # video clips, e.g., "1/bathroomCabinet_1/c1_s47_e78_sx636_sy394_ex628_ey437.mp4"
+  data/EgoPAT3D/EgoPAT3D-postproc
+                |-- odometry  # visual odometry data, e.g., "1/*/*.npy"
+                |-- trajectory_repair  # trajectory data, e.g., "1/*/*.pkl"
+                |-- video_clips_hand  # video clips, e.g., "1/*/*.mp4"
 ```
 
 ### H2O-PT
-This dataset can be downloaded here: [Google Drive](), which is collected by re-annotating the [H2O Dataset](https://taeinkwon.com/projects/h2o/). After downloaded, the dataset folder should be structured as follows.
+- This dataset can be downloaded here: [OneDrive]https://1drv.ms/f/s!Akf7nSDT8d4KqjIdL2EOACQ182Ua), which is collected by re-annotating the [H2O Dataset](https://taeinkwon.com/projects/h2o/). 
+
+- After downloaded, place the downloaded `tar.gz` file under `data/H2O/` and extract it: `tar zxvf Ego3DTraj.tar.gz`. The dataset folder should be structured as follows.
 ```shell
 data/H2O/Ego3DTraj
---|splits  # training splits, e.g., "train.txt", "val.txt", "test.txt"
---|traj  # trajectory data from pose (PT), e.g., "sub1_h1_0.pkl", ...
---|video  # video clips, e.g., "sub1_h1_0.mp4", ...
+        |-- splits  # training splits ("train.txt", "val.txt", "test.txt")
+        |-- traj  # trajectory data from pose (PT), e.g., "*.pkl", ...
+        |-- video  # video clips, e.g., "*.mp4", ...
 ```
 
 ## Training
@@ -95,25 +99,25 @@ d. Checkout other model variants in the `config/` folder, including the ResNet-1
 
 ## Testing
 
-a. Download the pretrained model from here: [Google Drive](), or train the model from scratch following the above [Training](#training) instructions.
-
-b. Test and evaluate a trained model, e.g., usst_vit_3d, on **EgoPAT3D-DT** testing set:
+a. Test and evaluate a trained model, e.g., usst_vit_3d, on **EgoPAT3D-DT** testing set:
 ```shell
 cd exp
 bash test.sh 0 8 usst_vit_3d
 ```
-c. Test and evaluate a trained model, e.g., usst_vit_3d, on **H2O-PT** testing set:
+b. Test and evaluate a trained model, e.g., usst_res18_3d, on **H2O-PT** testing set:
 ```shell
 cd exp
-bash trainval_h2o.sh 0 8 usst_vit_3d eval
+bash trainval_h2o.sh 0 8 usst_res18_3d eval
 ```
 Evaluation results will be cached in `output/[EgoPAT3D|H2O]/usst_vit_3d` and reported on the terminal.
 
-d. [Optional] Show the demos of a testing examples in our paper:
+c. To evaluate the 2D trajectory forecasting performance of a pretrained 3D target model, modify the config file `usst_xxx_3d.yml` to set `TEST.eval_space: norm2d`, then run the `test.sh` (or `trainval_h2o.sh`) again.
+
+d. If only doing testing without training, please download our pretrained model from here: [OneDrive](https://1drv.ms/f/s!Akf7nSDT8d4KqjMoXQhwQSk-lZb-?e=fGudpe). After downloaded a zip file, place it under the `output/` folder, e.g., `output/EgoPAT3D/usst_res18_3d.zip` and then extract it: `cd output/EgoPAT3D && unzip usst_res18_3d.zip`. Then, run the run the `test.sh` (or `trainval_h2o.sh`).
+
+e. [Optional] Show the demos of a testing examples in our paper:
 ```shell
-python demo_paper.py \
-  --config config/usst_vit_3d.yml \
-  --tag usst_vit_3d
+python demo_paper.py --config config/usst_vit_3d.yml --tag usst_vit_3d
 ```
 
 ## Citation
