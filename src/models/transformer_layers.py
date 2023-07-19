@@ -1,3 +1,5 @@
+""" Code modified from: https://github.com/stevenlsw/hoi-forecast/tree/master/networks
+"""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F

@@ -1,3 +1,6 @@
+""" Code modified from: ak_frame_extractor
+    https://github.com/GRAP-UdL-AT/ak_frame_extractor/blob/main/src/video_extraction_management/video_helpers/helpers.py
+"""
 import os
 import pyk4a
 from pyk4a import ImageFormat

@@ -303,8 +303,9 @@ class EgoPAT3D(Dataset):
 
 def build_dataloaders(cfg, phase='trainval'):
     """Loading the dataset"""
-    from .video_transforms.video_transforms import Compose, Resize, Normalize
-    from .video_transforms.volume_transforms import ClipToTensor
+    from gluoncv.torch.data.transforms.videotransforms.video_transforms import Compose, Resize, Normalize
+    from gluoncv.torch.data.transforms.videotransforms.volume_transforms import ClipToTensor
+
     
     data_root = os.path.join(cfg.DATA.data_path, cfg.DATA.dataset)
     transform_train, transform_test = None, None
@@ -417,8 +418,8 @@ def get_frame_stats():
 
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
-    from video_transforms.video_transforms import Compose, Resize, Normalize
-    from video_transforms.volume_transforms import ClipToTensor
+    from gluoncv.torch.data.transforms.videotransforms.video_transforms import Compose, Resize, Normalize
+    from gluoncv.torch.data.transforms.videotransforms.volume_transforms import ClipToTensor
     import sys
 
     rgb_transform = Compose([Resize([64, 64]), ClipToTensor(), Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])])

@@ -1,3 +1,5 @@
+""" Code adapted from: https://github.com/sgvaze/osr_closed_set_all_you_need/blob/main/utils/schedulers.py
+"""
 import torch
 import math
 
