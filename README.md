@@ -1,5 +1,5 @@
 # Egocentric 3D Hand Trajectory Forecasting
-[Project]() **|** [ArXiv](https://arxiv.org/pdf/2307.08243.pdf) **|** [Demo](https://www.youtube.com/watch?v=MYY6GmqZSJA)
+[Project]() **|** [ArXiv](https://arxiv.org/pdf/2307.08243.pdf) **|** [Demo](assets/demo.gif)
 
 [Wentao Bao](https://cogito2012.github.io/homepage), 
 [Lele Chen](https://www.cs.rochester.edu/u/lchen63), 
@@ -23,18 +23,18 @@ This is an official PyTorch implementation of the USST published in ICCV 2023. W
 **Egocentric 3D Hand Trajectory Forecasting (Ego3D-HTF)** aims to predict the future 3D hand trajectory (in <span style="color:red">*red*</span> color) given the past observation of an egocentric RGB video and historical trajectory (in <span style="color:blue">*blue*</span> color). Compared to predicting the trajectory in 2D space,
 predicting trajectory in global 3D space is practically more valuable to understand human intention for AR/VR applications.
 
-<div class="video-container" style="display: flex;">
+<!-- <div class="video-container" style="display: flex;"> -->
   <div class="video" align="center">
     <a href="https://www.youtube.com/watch?v=MYY6GmqZSJA">
-      <img src="https://img.youtube.com/vi/MYY6GmqZSJA/0.jpg" alt="Brief Intro." width=360px height=240px>
+      <img src="https://img.youtube.com/vi/MYY6GmqZSJA/0.jpg" alt="Brief Intro." width=540px height=360px>
     </a>
     <p>Brief Intro. [<a href="https://www.youtube.com/watch?v=MYY6GmqZSJA">YouTube</a>]</p>
   </div>
-  <div class="video" align="center">
+  <!-- <div class="video" align="center">
     <img src="assets/demo.gif"  alt="demo" width = 360px height=240px>
     <p>Annotation Example</p>
   </div>
-</div>
+</div> -->
 
 
 
