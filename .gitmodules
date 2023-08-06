@@ -1,0 +1,6 @@
+[submodule "third_party/NewCRFs"]
+	path = third_party/NewCRFs
+	url = https://github.com/aliyun/NeWCRFs
+[submodule "third_party/RAFT"]
+	path = third_party/RAFT
+	url = https://github.com/princeton-vl/RAFT

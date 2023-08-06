@@ -140,7 +140,7 @@ temp*
 output/
 *.log
 */logs/*
-3rdparty/
+third_party/
 *.DS_Store
 *.zip
 *backup*

@@ -1,3 +1,20 @@
+"""
+* Copyright (c) 2023 OPPO. All rights reserved.
+*
+*
+* Licensed under the Apache License, Version 2.0 (the "License"):
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* https://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and 
+* limitations under the License.
+"""
+
 """ In this step, we use RAFT model to get the forward and backward optical flows.
     The flows are used to warp the initial & the last hand location to get the forward & backward trajectories.
     Finally, the hand trajectory is the mean of the forward & backward trajectories.
@@ -11,7 +28,7 @@ import argparse
 import sys
 import pickle
 
-RAFT_ROOT = os.path.join(os.path.dirname(__file__), '../../3rdparty/RAFT')
+RAFT_ROOT = os.path.join(os.path.dirname(__file__), '../../third_party/RAFT')
 sys.path.append(os.path.join(RAFT_ROOT, 'core'))
 from raft import RAFT
 from utils.utils import InputPadder
