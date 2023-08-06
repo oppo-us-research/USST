@@ -143,4 +143,4 @@ See [Apache-2.0 License](/LICENSE).
 
 ## Acknowledgement
 
-We sincerely thank the owners of the following source code repos, which contribute to our released codes: [EgoPAT3D](https://github.com/ai4ce/EgoPAT3D/tree/main/preprocessing), [VPT](https://github.com/KMnP/vpt), [torch_videovision](https://github.com/hassony2/torch_videovision),  [FullyConvResNet](https://programmer.group/5ef0376c8e2f2.html), [RAFT](https://github.com/princeton-vl/RAFT), and [pyrgbd](https://github.com/telegie/pyrgbd).
+We sincerely thank the owners of the following source code repos, which contribute to our released codes: [EgoPAT3D](https://github.com/ai4ce/EgoPAT3D/tree/main/preprocessing), [hoi_forecast](https://github.com/stevenlsw/hoi-forecast), [RAFT](https://github.com/princeton-vl/RAFT), and [NewCRFs](https://github.com/aliyun/NeWCRFs).
