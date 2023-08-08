@@ -22,8 +22,12 @@ import pickle
 import numpy as np
 try:
     # the pyk4a is only installed on monitor-connected Windows/Linux machine
+    import sys
+    PYK4A_ROOT = os.path.join(os.path.dirname(__file__), '../../third_party/pyk4a')
+    sys.path.append(os.path.join(PYK4A_ROOT, 'example'))
+    from helpers import convert_to_bgra_if_required
     import pyk4a
-    from pyk4a import PyK4APlayback, ImageFormat
+    from pyk4a import PyK4APlayback
     import open3d as o3d
 except:
     pass
@@ -61,16 +65,6 @@ def read_odometry(odom_file):
     assert os.path.exists(odom_file), "File does not exist! {}".format(odom_file)
     all_transforms = np.load(odom_file)  # (T, 4, 4)
     return all_transforms
-
-
-def convert_to_bgra_if_required(color_format, color_image):
-    if color_format == ImageFormat.COLOR_MJPG:
-        color_image = cv2.imdecode(color_image, cv2.IMREAD_COLOR)
-    elif color_format == ImageFormat.COLOR_NV12:
-        color_image = cv2.cvtColor(color_image, cv2.COLOR_YUV2BGRA_NV12)
-    elif color_format == ImageFormat.COLOR_YUY2:
-        color_image = cv2.cvtColor(color_image, cv2.COLOR_YUV2BGRA_YUY2)
-    return color_image
 
 
 def get_rgb_depth(playback, start, end, pointer, ratio=1.0):

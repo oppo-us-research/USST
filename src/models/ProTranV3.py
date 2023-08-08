@@ -17,7 +17,14 @@
 
 import torch
 import torch.nn as nn
-from src.models.transformer_layers import PositionalEncoding, MultiHeadAttention
+import os, sys
+HoiForecast_ROOT = os.path.join(os.path.dirname(__file__), '../../third_party/hoi-forecast')
+sys.path.append(HoiForecast_ROOT)
+""" 
+The followings are hoi-forecast classes
+"""
+from networks.embedding import PositionalEncoding
+from networks.layer import MultiHeadAttention
 
 
 

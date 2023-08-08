@@ -13,44 +13,18 @@
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and 
 * limitations under the License.
-*
-* NOTICE:
-* Code modified from: https://github.com/GRAP-UdL-AT/ak_frame_extractor/blob/main/src/video_extraction_management/video_helpers/helpers.py,
-* which is protected under the MIT License: https://github.com/GRAP-UdL-AT/ak_frame_extractor/blob/main/LICENSE
-*
 """
+
 import os
+import sys
+PYK4A_ROOT = os.path.join(os.path.dirname(__file__), '../../third_party/pyk4a')
+sys.path.append(os.path.join(PYK4A_ROOT, 'example'))
+from helpers import convert_to_bgra_if_required, colorize
+
 import pyk4a
-from pyk4a import ImageFormat
-from pyk4a import PyK4APlayback, SeekOrigin
+from pyk4a import PyK4APlayback
 import cv2
 import numpy as np
-from typing import Optional, Tuple
-
-
-
-def convert_to_bgra_if_required(color_format: ImageFormat, color_image):
-    if color_format == ImageFormat.COLOR_MJPG:
-        color_image = cv2.imdecode(color_image, cv2.IMREAD_COLOR)
-    elif color_format == ImageFormat.COLOR_NV12:
-        color_image = cv2.cvtColor(color_image, cv2.COLOR_YUV2BGRA_NV12)
-    elif color_format == ImageFormat.COLOR_YUY2:
-        color_image = cv2.cvtColor(color_image, cv2.COLOR_YUV2BGRA_YUY2)
-    return color_image
-
-
-def colorize(
-    image: np.ndarray,
-    clipping_range: Tuple[Optional[int], Optional[int]] = (None, None),
-    colormap: int = cv2.COLORMAP_HSV,
-) -> np.ndarray:
-    if clipping_range[0] or clipping_range[1]:
-        img = image.clip(clipping_range[0], clipping_range[1])
-    else:
-        img = image.copy()
-    img = cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX, dtype=cv2.CV_8U)
-    img = cv2.applyColorMap(img, colormap)
-    return img
 
 
 def read_by_whileloop(mkvraw_file, rgb_path, depth_path):

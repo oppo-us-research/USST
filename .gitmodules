@@ -4,3 +4,9 @@
 [submodule "third_party/RAFT"]
 	path = third_party/RAFT
 	url = https://github.com/princeton-vl/RAFT
+[submodule "third_party/pyk4a"]
+	path = third_party/pyk4a
+	url = https://github.com/etiennedub/pyk4a.git
+[submodule "third_party/hoi-forecast"]
+	path = third_party/hoi-forecast
+	url = https://github.com/stevenlsw/hoi-forecast.git

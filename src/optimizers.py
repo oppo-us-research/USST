@@ -15,8 +15,9 @@
 * limitations under the License.
 *
 * NOTICE:
-* Function `CosineAnnealingWarmupRestarts_New` is from: https://github.com/sgvaze/osr_closed_set_all_you_need/blob/main/utils/schedulers.py,
+* Function `CosineAnnealingWarmupRestarts_New` is from the original repo: https://github.com/sgvaze/osr_closed_set_all_you_need/blob/main/utils/schedulers.py,
 * which is protected under the MIT License: https://github.com/sgvaze/osr_closed_set_all_you_need/blob/main/LICENSE.md
+* We sincerely thank the contributors of the original repo.
 *
 """
 
