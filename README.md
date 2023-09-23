@@ -1,5 +1,5 @@
 # Egocentric 3D Hand Trajectory Forecasting
-[Project]() **|** [ArXiv](https://arxiv.org/pdf/2307.08243.pdf) **|** [Demo](assets/demo.gif)
+[Project](https://actionlab-cv.github.io/EgoHandTrajPred) **|** [ArXiv](https://arxiv.org/pdf/2307.08243.pdf) **|** [Demo](assets/demo.gif)
 
 [Wentao Bao](https://cogito2012.github.io/homepage), 
 [Lele Chen](https://www.cs.rochester.edu/u/lchen63), 
