@@ -1,5 +1,5 @@
 # Egocentric 3D Hand Trajectory Forecasting
-[Project]() **|** [ArXiv](https://arxiv.org/pdf/2307.08243.pdf) **|** [Demo](assets/demo.gif)
+[Project](https://actionlab-cv.github.io/EgoHandTrajPred) **|** [ArXiv](https://arxiv.org/pdf/2307.08243.pdf) **|** [Demo](assets/demo.gif)
 
 [Wentao Bao](https://cogito2012.github.io/homepage), 
 [Lele Chen](https://www.cs.rochester.edu/u/lchen63), 
@@ -137,10 +137,35 @@ If you find the code useful in your research, please cite:
       year = "2023"
     }
 
+Please also cite the EgoPAT3D paper if you use our EgoPAT3D-DT annotations:
+
+    @InProceedings{Li_2022_CVPR,
+      title = {Egocentric Prediction of Action Target in 3D},
+      author = {Li, Yiming and Cao, Ziang and Liang, Andrew and Liang, Benjamin and Chen, Luoyao and Zhao, Hang and Feng, Chen},
+      booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+      month = {June},
+      year = {2022}
+    }
+
+and H2O paper if you use our H2O-PT annotations:
+
+    @InProceedings{Kwon_2021_ICCV,
+      author = {Kwon, Taein and Tekin, Bugra and St\"uhmer, Jan and Bogo, Federica and Pollefeys, Marc},
+      title = {H2O: Two Hands Manipulating Objects for First Person Interaction Recognition},
+      booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+      month = {October},
+      year = {2021},
+      pages = {10138-10148}
+    }
+
 ## License
 
-See [Apache-2.0 License](/LICENSE).
+- Codes and checkpoints are licensed under the
+[Apache 2.0 License](/LICENSE).   
+- Dataset EgoPAT3D-DT is licensed following the [EgoPAT3D](https://github.com/ai4ce/EgoPAT3D), which is licensed under the [MIT License](https://github.com/ai4ce/EgoPAT3D/blob/main/LICENSE).   
+- Dataset H2O-PT is licensed by following [ETH Zurich H2O Dataset Terms of Use](https://h2odataset.ethz.ch/).
+
 
 ## Acknowledgement
 
-We sincerely thank the owners of the following source code repos, which contribute to our released codes: [EgoPAT3D](https://github.com/ai4ce/EgoPAT3D/tree/main/preprocessing), [hoi_forecast](https://github.com/stevenlsw/hoi-forecast), [RAFT](https://github.com/princeton-vl/RAFT), and [NewCRFs](https://github.com/aliyun/NeWCRFs).
+We sincerely thank the owners of the following source code repos, which are referred by our released codes: [EgoPAT3D](https://github.com/ai4ce/EgoPAT3D/tree/main/preprocessing), [hoi_forecast](https://github.com/stevenlsw/hoi-forecast), [pyk4a](https://github.com/etiennedub/pyk4a), [RAFT](https://github.com/princeton-vl/RAFT), and [NewCRFs](https://github.com/aliyun/NeWCRFs).
