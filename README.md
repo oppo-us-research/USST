@@ -61,7 +61,7 @@ predicting trajectory in global 3D space is practically more valuable to underst
 ## Datasets
 
 ### EgoPAT3D-DT
-- This dataset can be downloaded here: [OneDrive](https://1drv.ms/f/s!Akf7nSDT8d4KqjEeQT4HGlx038by), which is collected by re-annotating the raw RGB-D recordings from [EgoPAT3D Dataset](https://github.com/ai4ce/EgoPAT3D). 
+- This dataset can be downloaded here: [OneDrive](https://1drv.ms/f/c/0adef1d3209dfb47/Qkf7nSDT8d4ggAoxFQAAAAAAHkE-BxpcdN_G8g), which is collected by re-annotating the raw RGB-D recordings from [EgoPAT3D Dataset](https://github.com/ai4ce/EgoPAT3D). 
 
 - After downloaded, place the downloaded `tar.gz` file under `data/EgoPAT3D/` and extract it: `tar zxvf EgoPAT3D-postproc.tar.gz`. The dataset folder should be structured as follows.
 ```shell
@@ -72,7 +72,7 @@ predicting trajectory in global 3D space is practically more valuable to underst
 ```
 
 ### H2O-PT
-- This dataset can be downloaded here: [OneDrive](https://1drv.ms/f/s!Akf7nSDT8d4KqjIdL2EOACQ182Ua), which is collected by re-annotating the [H2O Dataset](https://taeinkwon.com/projects/h2o/). 
+- This dataset can be downloaded here: [OneDrive](https://1drv.ms/f/c/0adef1d3209dfb47/Qkf7nSDT8d4ggAoyFQAAAAAAHS9hDgAkNfNlGg), which is collected by re-annotating the [H2O Dataset](https://taeinkwon.com/projects/h2o/). 
 
 - After downloaded, place the downloaded `tar.gz` file under `data/H2O/` and extract it: `tar zxvf Ego3DTraj.tar.gz`. The dataset folder should be structured as follows.
 ```shell
@@ -120,7 +120,7 @@ Evaluation results will be cached in `output/[EgoPAT3D|H2O]/usst_vit_3d` and rep
 
 c. To evaluate the 2D trajectory forecasting performance of a pretrained 3D target model, modify the config file `usst_xxx_3d.yml` to set `TEST.eval_space: norm2d`, then run the `test.sh` (or `trainval_h2o.sh`) again.
 
-d. If only doing testing without training, please download our pretrained model from here: [OneDrive](https://1drv.ms/f/s!Akf7nSDT8d4KqjMoXQhwQSk-lZb-?e=fGudpe). After downloaded a zip file, place it under the `output/` folder, e.g., `output/EgoPAT3D/usst_res18_3d.zip` and then extract it: `cd output/EgoPAT3D && unzip usst_res18_3d.zip`. Then, run the run the `test.sh` (or `trainval_h2o.sh`).
+d. If only doing testing without training, please download our pretrained model from here: [OneDrive](https://1drv.ms/f/c/0adef1d3209dfb47/Qkf7nSDT8d4ggAozFQAAAAAAKF0IcEEpPpWW_g). After downloaded a zip file, place it under the `output/` folder, e.g., `output/EgoPAT3D/usst_res18_3d.zip` and then extract it: `cd output/EgoPAT3D && unzip usst_res18_3d.zip`. Then, run the run the `test.sh` (or `trainval_h2o.sh`).
 
 e. [Optional] Show the demos of a testing examples in our paper:
 ```shell
