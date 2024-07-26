@@ -194,10 +194,6 @@ def run_test(cfg, model, data_loader):
                 all_preds[r].extend(preds[r])
                 all_gts[r].extend(gts[r])
     
-    for r in list(all_preds.keys()):
-        all_preds[r] = np.vstack(all_preds[r])  # (N, 3)
-        all_gts[r] = np.vstack(all_gts[r])  # (N, 3)
-        
     return all_preds, all_gts
 
 
@@ -230,10 +226,6 @@ def run_h2o_test(cfg, model, data_loader):
                 all_gts[r].extend(gts[r])
                 all_poses[r].extend(poses[r])
     
-    for r in list(all_preds.keys()):
-        all_preds[r] = np.vstack(all_preds[r])  # (N, 3)
-        all_gts[r] = np.vstack(all_gts[r])  # (N, 3)
-        all_poses[r] = np.concatenate(all_poses[r])  # (N, 4, 4)
         
     return all_preds, all_gts, all_poses
 

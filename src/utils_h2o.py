@@ -98,14 +98,14 @@ def compute_displacement_errors(all_preds, all_gts, all_camposes, target='3d', e
         preds, gts, cam2world = all_preds[r], all_gts[r], all_camposes[r]
         
         # transform trajectory
-        preds = traj_transform(preds, cam2world, target, eval_space, use_global)
-        gts = traj_transform(gts, cam2world, target, eval_space, use_global)
+        preds = [traj_transform(p, c2w, target, eval_space, use_global) for p, c2w in zip(preds, cam2world)]
+        gts = [traj_transform(g, c2w, target, eval_space, use_global) for g, c2w in zip(gts, cam2world)]
 
-        displace_errors = np.sqrt(np.sum((preds - gts)**2, axis=-1))  # (Tu,)
+        displace_errors = [np.sqrt(np.sum((p - g)**2, axis=-1)) for p, g in zip(preds, gts)]  # (Tu,)
         # ADE score
-        all_ades[r] = np.mean(displace_errors)
+        all_ades[r] = np.mean([np.mean(err) for err in displace_errors])
         # FDE score
-        all_fdes[r] = displace_errors[-1]
+        all_fdes[r] = np.mean([err[-1] for err in displace_errors])
     
     return all_ades, all_fdes
 
@@ -117,14 +117,14 @@ def compute_block_distances(all_preds, all_gts, all_camposes, target='3d', eval_
         preds, gts, cam2world = all_preds[r], all_gts[r], all_camposes[r]
         
         # transform trajectory
-        preds = traj_transform(preds, cam2world, target, eval_space, use_global)
-        gts = traj_transform(gts, cam2world, target, eval_space, use_global)
+        preds = [traj_transform(p, c2w, target, eval_space, use_global) for p, c2w in zip(preds, cam2world)]
+        gts = [traj_transform(g, c2w, target, eval_space, use_global) for g, c2w in zip(gts, cam2world)]
         
         # delta X
-        all_dxs[r] = np.mean(np.fabs(preds[:, 0] - gts[:, 0]))
+        all_dxs[r] = np.mean([np.mean(np.fabs(p[:, 0] - g[:, 0])) for p, g in zip(preds, gts)])
         # delta Y
-        all_dys[r] = np.mean(np.fabs(preds[:, 1] - gts[:, 1]))
-        if preds.shape[-1] == 3:
+        all_dys[r] = np.mean([np.mean(np.fabs(p[:, 1] - g[:, 1])) for p, g in zip(preds, gts)])
+        if preds[0].shape[-1] == 3:
             # delta Z
-            all_dzs[r] = np.mean(np.fabs(preds[:, 2] - gts[:, 2]))
+            all_dzs[r] = np.mean([np.mean(np.fabs(p[:, 2] - g[:, 2])) for p, g in zip(preds, gts)])
     return all_dxs, all_dys, all_dzs

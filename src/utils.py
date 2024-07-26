@@ -154,25 +154,25 @@ def compute_displacement_errors(all_preds, all_gts, target='3d', eval_space='3d'
     """Compute the Displacement Errors (ADE and FDE)"""
     all_ades, all_fdes = dict(), dict()
     for r in list(all_gts.keys()):
-        preds, gts = all_preds[r], all_gts[r]
+        preds, gts = all_preds[r], all_gts[r]  # list of (?, 2) or (?, 3)
         
         if target == '3d' and eval_space == '2d':
-            preds = XYZ_to_uv(preds, intrinsics)
-            gts = XYZ_to_uv(gts, intrinsics)
+            preds = [XYZ_to_uv(p, intrinsics) for p in preds]
+            gts = [XYZ_to_uv(g, intrinsics) for g in gts]
         
         if target == '3d' and eval_space == 'norm2d':
-            preds = normalize_2d(XYZ_to_uv(preds, intrinsics), intrinsics)
-            gts = normalize_2d(XYZ_to_uv(gts, intrinsics), intrinsics)
+            preds = [normalize_2d(XYZ_to_uv(p, intrinsics), intrinsics) for p in preds]
+            gts = [normalize_2d(XYZ_to_uv(g, intrinsics), intrinsics) for g in gts]
         
         if target == '2d' and eval_space == 'norm2d':
-            preds = normalize_2d(preds, intrinsics)
-            gts = normalize_2d(gts, intrinsics)
+            preds = [normalize_2d(p, intrinsics) for p in preds]
+            gts = [normalize_2d(g, intrinsics) for g in gts]
 
-        displace_errors = np.sqrt(np.sum((preds - gts)**2, axis=-1))  # (Tu,)
+        displace_errors = [np.sqrt(np.sum((p - g)**2, axis=-1)) for p, g in zip(preds, gts)]  # (Tu,)
         # ADE score
-        all_ades[r] = np.mean(displace_errors)
+        all_ades[r] = np.mean([np.mean(err) for err in displace_errors])
         # FDE score
-        all_fdes[r] = displace_errors[-1]
+        all_fdes[r] = np.mean([err[-1] for err in displace_errors])
     
     return all_ades, all_fdes
 
@@ -181,27 +181,27 @@ def compute_block_distances(all_preds, all_gts, target='3d', eval_space='3d', in
     """Compute the block distances along x, y, and z dimensions"""
     all_dxs, all_dys, all_dzs = dict(), dict(), dict()
     for r in list(all_gts.keys()):
-        preds, gts = all_preds[r], all_gts[r]
+        preds, gts = all_preds[r], all_gts[r]  # list of (?, 2) or (?, 3)
         
         if target == '3d' and eval_space == '2d':
-            preds = XYZ_to_uv(preds, intrinsics)
-            gts = XYZ_to_uv(gts, intrinsics)
+            preds = [XYZ_to_uv(p, intrinsics) for p in preds]
+            gts = [XYZ_to_uv(g, intrinsics) for g in gts]
         
         if target == '3d' and eval_space == 'norm2d':
-            preds = normalize_2d(XYZ_to_uv(preds, intrinsics), intrinsics)
-            gts = normalize_2d(XYZ_to_uv(gts, intrinsics), intrinsics)
+            preds = [normalize_2d(XYZ_to_uv(p, intrinsics), intrinsics) for p in preds]
+            gts = [normalize_2d(XYZ_to_uv(g, intrinsics), intrinsics) for g in gts]
         
         if target == '2d' and eval_space == 'norm2d':
-            preds = normalize_2d(preds, intrinsics)
-            gts = normalize_2d(gts, intrinsics)
+            preds = [normalize_2d(p, intrinsics) for p in preds]
+            gts = [normalize_2d(g, intrinsics) for g in gts]
         
         # delta X
-        all_dxs[r] = np.mean(np.fabs(preds[:, 0] - gts[:, 0]))
+        all_dxs[r] = np.mean([np.mean(np.fabs(p[:, 0] - g[:, 0])) for p, g in zip(preds, gts)])
         # delta Y
-        all_dys[r] = np.mean(np.fabs(preds[:, 1] - gts[:, 1]))
-        if preds.shape[-1] == 3:
+        all_dys[r] = np.mean([np.mean(np.fabs(p[:, 1] - g[:, 1])) for p, g in zip(preds, gts)])
+        if preds[0].shape[-1] == 3:
             # delta Z
-            all_dzs[r] = np.mean(np.fabs(preds[:, 2] - gts[:, 2]))
+            all_dzs[r] = np.mean([np.mean(np.fabs(p[:, 2] - g[:, 2])) for p, g in zip(preds, gts)])
     return all_dxs, all_dys, all_dzs
 
 
